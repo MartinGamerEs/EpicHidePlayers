@@ -116,9 +116,7 @@ public class API {
     public boolean PlayerExist(Player p){
         try {
             return playerdata.getString(p.getName()) != null;
-        } catch (Exception e) {
-            return false;
-        }
+        } catch (Exception e) {return false;}
     }
     
     private String c(String c){

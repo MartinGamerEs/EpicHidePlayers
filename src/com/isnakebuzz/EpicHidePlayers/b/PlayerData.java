@@ -16,6 +16,7 @@ public class PlayerData{
         this.pluginDir = p.getDataFolder();
     
         this.configFile = new File(this.pluginDir, "PlayerData.yml");
+        
         if (!this.configFile.exists()) {
             p.saveResource("PlayerData.yml", true);
         }
