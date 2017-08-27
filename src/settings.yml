@@ -1,0 +1,44 @@
+## Enable touch hide or disable :)
+EnableTouchHide: true
+EnableByItem: true
+ItemConfig:
+  # Use :D! 0, 1, 2, 3, 4, 5, 6, 7, 8
+  Slot: 8
+  Enable:
+    Name: '&6Players &a&lON'
+    Lore:
+      - ''
+      - 'Hide All Players - Click here'
+      - ''
+    ID: 50
+    DATA: 0
+    AMOUNT: 1
+  Disable:
+    Name: '&6Players &c&lOFF'
+    Lore:
+      - ''
+      - 'Show All Players - Click here'
+      - ''
+    ID: 76
+    DATA: 0
+    AMOUNT: 1
+Messages:
+  Enable: '&8[&c&l!&8] &aPlayers has been hiden'
+  Disable: '&8[&a&l!&8] &cPlayers has been unhide'
+  Cooldown: '&8[&a&l!&8] &cPlease wait &a%time%s&c for usage :)'
+MySQL:
+  #Recomended enable for networks that have more than 1 lobby
+  # If you have 1 lobby, recomended disable :)
+  Enable: false
+  HostName: 127.0.0.1
+  Port: 3306
+  Database: Data-API
+  Username: Api
+  Password: xd
+## This option is in BETA, please dont bad review for this option :)
+Particle: false
+Message: '&b&oPop!'
+SubSettings:
+  Sound: CHICKEN_EGG_POP
+  Pitch: 1
+  Vol: 1
