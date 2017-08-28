@@ -9,6 +9,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -38,6 +39,9 @@ public class Listeners implements Listener{
         }
         Player p = (Player) e.getDamager();
         final Player r = (Player)e.getEntity();
+        if(!settings.getStringList("EnableWorlds").contains(p.getWorld().getName()) || !settings.getStringList("EnableWorlds").contains(r.getWorld().getName())){
+            return;
+        }
         if (r instanceof Player) {
             e.setCancelled(true);
             p.hidePlayer(r);
@@ -58,7 +62,19 @@ public class Listeners implements Listener{
     }
     
     private ArrayList<Player> cooldown = new ArrayList<>();
-        
+    
+    @EventHandler
+    public void ChangeWorld(PlayerChangedWorldEvent e){
+        Player p = e.getPlayer();
+        if (a.ad == false){
+            return;
+        }
+        if(!settings.getStringList("EnableWorlds").contains(p.getWorld().getName())){
+            return;
+        }
+        a.getAPI().setItems(p);
+    }
+    
     @EventHandler
     public void Interact(PlayerInteractEvent e){
         Player p = e.getPlayer();
@@ -73,6 +89,9 @@ public class Listeners implements Listener{
         }
         if (cooldown.contains(p)){
             p.sendMessage(c(settings.getString("Messages.Cooldown")));
+            return;
+        }
+        if(!settings.getStringList("EnableWorlds").contains(p.getWorld().getName())){
             return;
         }
         if (settings.getString("ItemConfig.Enable.Name").replaceAll("&", "§").equals(e.getItem().getItemMeta().getDisplayName()) || settings.getString("ItemConfig.Disable.Name").replaceAll("&", "§").equals(e.getItem().getItemMeta().getDisplayName())){
